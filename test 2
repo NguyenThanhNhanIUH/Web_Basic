@@ -1,1 +1,77 @@
-2
+import React, { useState } from "react";
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from "react-native";
+
+export default function App() {
+  const [cart, setCart] = useState([]);
+
+  const products = [
+    { id: "1", name: "Sản phẩm A", price: 100 },
+    { id: "2", name: "Sản phẩm B", price: 200 },
+    { id: "3", name: "Sản phẩm C", price: 300 },
+  ];
+
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+  };
+
+  const renderItem = ({ item }) => (
+    <View style={styles.item}>
+      <Text style={styles.name}>{item.name}</Text>
+      <Text style={styles.price}>{item.price}₫</Text>
+      <TouchableOpacity style={styles.button} onPress={() => addToCart(item)}>
+        <Text style={styles.btnText}>Thêm vào giỏ</Text>
+      </TouchableOpacity>
+    </View>
+  );
+
+  const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.cartInfo}>
+        Giỏ hàng: {cart.length} sản phẩm - Tổng: {totalPrice}₫
+      </Text>
+      <FlatList
+        data={products}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: "#fff",
+  },
+  cartInfo: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 15,
+  },
+  item: {
+    padding: 15,
+    borderBottomWidth: 1,
+    borderColor: "#ccc",
+  },
+  name: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  price: {
+    fontSize: 16,
+    color: "green",
+    marginBottom: 5,
+  },
+  button: {
+    backgroundColor: "#007bff",
+    padding: 8,
+    borderRadius: 5,
+    alignItems: "center",
+  },
+  btnText: {
+    color: "#fff",
+  },
+});2
