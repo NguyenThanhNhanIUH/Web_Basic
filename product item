@@ -1,0 +1,41 @@
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+
+export default function ProductItem({ item, onAddToCart }) {
+  return (
+    <View style={styles.item}>
+      <Text style={styles.name}>{item.name}</Text>
+      <Text style={styles.price}>{item.price}₫</Text>
+      <TouchableOpacity style={styles.button} onPress={() => onAddToCart(item)}>
+        <Text style={styles.btnText}>Thêm vào giỏ</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  item: {
+    padding: 15,
+    borderBottomWidth: 1,
+    borderColor: "#ccc",
+  },
+  name: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  price: {
+    fontSize: 16,
+    color: "green",
+    marginBottom: 5,
+  },
+  button: {
+    backgroundColor: "#007bff",
+    padding: 8,
+    borderRadius: 5,
+    alignItems: "center",
+  },
+  btnText: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
+});
