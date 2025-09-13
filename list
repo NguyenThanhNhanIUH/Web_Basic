@@ -1,8 +1,13 @@
 import React from "react";
 import { FlatList } from "react-native";
-import ProductItem from "./ProductItem";
+import ProductItem, { Product } from "./ProductItem";
 
-export default function ProductList({ products, onAddToCart }) {
+type Props = {
+  products: Product[];
+  onAddToCart: (product: Product) => void;
+};
+
+export default function ProductList({ products, onAddToCart }: Props) {
   return (
     <FlatList
       data={products}
