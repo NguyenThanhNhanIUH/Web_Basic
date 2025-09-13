@@ -1,7 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { Product } from "./ProductItem";
 
-export default function CartSummary({ cart }) {
+type Props = {
+  cart: Product[];
+};
+
+export default function CartSummary({ cart }: Props) {
   const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
 
   return (
